@@ -35,7 +35,8 @@ if __name__ == '__main__':
             while(patch_end_line < len(contents)):
                 line = contents[patch_end_line]
                 if SPLITTER_RE.match(line) or patch_end_line == len(contents) - 1:
-                    patch_lines = contents[patch_start_line + 1 : patch_end_line]
+                    last_line = len(contents) if patch_end_line == len(contents) - 1 else patch_end_line
+                    patch_lines = contents[patch_start_line + 1 : last_line]
                     apply_patch(patch_path, patch_lines)
                     break
 
